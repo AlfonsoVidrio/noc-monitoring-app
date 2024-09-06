@@ -28,7 +28,11 @@ export class CheckService implements CheckServiceUseCase{
                 throw new Error(`Error on check service ${ url }`);
             }
             // If the service is available, save a log with low severity    
-            const log = new LogEntity(`Service ${ url } working`, LogSeverityLevel.low );
+            const log = new LogEntity({
+                message:`Service ${ url } working`, 
+                level:LogSeverityLevel.low,
+                origin:'check-service.ts'
+            });
             this.logRepository.saveLog( log )
 
             // Call the success callback
@@ -37,7 +41,11 @@ export class CheckService implements CheckServiceUseCase{
         } catch (error) {
             const errorMessage = `${ url } is not ok. ${ error }`;
             // If the service is not available, save a log with high severity
-            const log = new LogEntity( errorMessage , LogSeverityLevel.high );
+            const log = new LogEntity( {
+                message:errorMessage, 
+                level:LogSeverityLevel.high,
+                origin:'check-service.ts'
+            });
             this.logRepository.saveLog( log );
 
             // Call the error callback

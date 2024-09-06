@@ -14,17 +14,20 @@ export class Server {
 
         console.log('Server started...');
 
-        CronService.createJob(
-            "*/10 * * * * *",
-            () => {
-                // const url = 'https://www.google.com';
-                const url = 'https://moodle.cualtos.udg.mx';
-                new CheckService(
-                    fileSystemLogRepository,
-                    () => console.log(` ${url} is ok`),
-                    (error) => console.error(`Error: ${error}`)
-                ).execute(url);
-            });
+        // Mandar email
+
+
+        // CronService.createJob(
+        //     "*/10 * * * * *",
+        //     () => {
+        //         // const url = 'https://www.google.com';
+        //         const url = 'https://moodle.cualtos.udg.mx';
+        //         new CheckService(
+        //             fileSystemLogRepository,
+        //             () => console.log(` ${url} is ok`),
+        //             (error) => console.error(`Error: ${error}`)
+        //         ).execute(url);
+        //     });
     }
 
 }
